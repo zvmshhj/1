@@ -34,6 +34,10 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
+          git clone https://github.com/nativefier/nativefier.git
+          cd nativefier
+          npm ci
+          npm run build
           nativefier --name "ZVMS" "https://zhzx.top/"
       - name: 'Commit Files'
         id: commit
