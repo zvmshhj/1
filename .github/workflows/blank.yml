@@ -38,6 +38,8 @@ jobs:
           cd nativefier
           npm ci
           npm run build
+          npm link
+          which nativefier
           nativefier --name "ZVMS" "https://zhzx.top/"
       - name: 'Commit Files'
         id: commit
