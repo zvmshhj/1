@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
 # Controls when the workflow will run
@@ -21,7 +19,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 17
+          node-version: 16
 
     # Steps represent a sequence of tasks that will be executed as part of the job
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -29,18 +27,15 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: npm install nativefier -g --location=global
+        run: npm install electron-packager -g
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          git clone https://github.com/nativefier/nativefier.git
-          cd nativefier
-          npm ci
-          npm run build
-          npm link
-          which nativefier
-          nativefier --name "ZVMS" "https://zhzx.top/"
+          git clone https://gitee.com/zvms/zvms.git
+          cd /zvms/web
+          wget https://raw.githubusercontent.com/zvms/zvms/master/web/public/favicon.ico
+          electron-packager zvms.exe --out=/app --arch=x64 --platform=win32  --icon=favicon.ico
       - name: 'Commit Files'
         id: commit
         run: |
